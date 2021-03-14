@@ -1,9 +1,6 @@
-FROM node
-WORKDIR '/app'
-
-COPY package.json .
-RUN yarn
-COPY . .
+FROM nginx:mainline-alpine
+RUN rm /etc/nginx/conf.d/*
+ADD helloworld.conf /etc/nginx/conf.d/
+ADD index.html /usr/share/nginx/html/
 
 EXPOSE 3000
-CMD ["node", "index.js"]
